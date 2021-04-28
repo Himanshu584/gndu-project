@@ -1,0 +1,47 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1 " />
+    <title>GNDU-FORM</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}" />
+</head>
+<body>
+    <h1 id='header'>GNDU APPLICATION FORM</h1>
+    <div class="main-wrapper">
+
+        <div class="form-wrapper">
+            <form method="POST" id="registration-form" action="">
+                {% csrf_token %}
+                <label class="form-label" for="name">Name :</label>
+                <input class="form-input" type="text" name="name" required>
+    
+                <label class="form-label" for="phone">Phone :</label>
+                <input class="form-input" type="tel" name="phone" pattern="[0-9]{10}" required>
+    
+                <label class="form-label" for="email">Email :</label>
+                <input class="form-input" type="text" name="email" required>
+    
+                <label class="form-label" for="catagory">Catagory :</label>
+                <select name="catagory" id="Catagory">
+                    <option value="General">General</option>
+                    <option value="SC/ST">SC/ST</option>
+                    <option value="Obc">OBC</option>
+                </select>
+                <br>
+
+                <label class="form-label" for="course">Select Courses :</label>
+                <select name="course" id="courses">
+                    {% for course in courses %}
+                    <option value="{{course.course_name}}">{{course.course_name}}</option>
+                    {% endfor %}
+                </select>
+    
+                <button id="submit-btn" type="submit" value="POST">Send</button>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>
